@@ -43,4 +43,6 @@ if (require.main === module) {
   connectDB().then(() => server.listen(process.env.PORT || 3000, () => console.log(`Server running on port ${process.env.PORT || 3000}`))).catch((error) => { console.error(error); process.exit(1); });
 }
 
-module.exports = { app, configureSockets };
+app.app = app;
+app.configureSockets = configureSockets;
+module.exports = app;
