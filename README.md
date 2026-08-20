@@ -8,7 +8,7 @@ Node.js, Express, MongoDB/Mongoose, JWT, bcryptjs, Socket.io, Swagger, Jest, and
 
 ## Local Setup
 
-1. Clone the repository: `git clone https://github.com/5kiro/lvl4-last-project.git`.
+1. Clone the repository: `git clone https://github.com/5kiro/30907271803796-EventPlus.git`.
 2. Install Node.js 18 or newer and MongoDB, or use MongoDB Atlas.
 3. Run `npm install`.
 4. Copy `.env.example` to `.env` and set `MONGO_URI` and `JWT_SECRET`.
