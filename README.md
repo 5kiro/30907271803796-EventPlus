@@ -36,6 +36,6 @@ Node.js, Express, MongoDB/Mongoose, JWT, bcryptjs, Socket.io, Swagger, Jest, and
 
 ## Deployment
 
-Live deployment URL: deployment not completed yet.
+Live deployment URL: https://30907271803796-event-plus-8ohlnwdj4-event-plus.vercel.app
 
 After deployment, replace the sentence above with the URL provided by Vercel or Render, then verify `/health` and `/api-docs`.
