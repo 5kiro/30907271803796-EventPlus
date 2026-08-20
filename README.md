@@ -1,4 +1,4 @@
-# 00000-EventPulse
+# 30907271803796-EventPlus
 
 EventPulse is a Node.js and Express backend API for event discovery, registration, administration, and real-time announcements.
 
@@ -36,6 +36,6 @@ Node.js, Express, MongoDB/Mongoose, JWT, bcryptjs, Socket.io, Swagger, Jest, and
 
 ## Deployment
 
-Live deployment URL: `<add-your-deployment-url>`
+Live deployment URL: deployment not completed yet.
 
-After deployment, verify `/health` and `/api-docs` using the live URL, then replace the placeholder above.
+After deployment, replace the sentence above with the URL provided by Vercel or Render, then verify `/health` and `/api-docs`.
