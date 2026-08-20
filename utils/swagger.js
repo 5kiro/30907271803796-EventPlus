@@ -1,7 +1,7 @@
 module.exports = {
   openapi: '3.0.0',
   info: { title: 'EventPulse API', version: '1.0.0', description: 'Event management backend API' },
-  servers: [{ url: 'https://30907271803796-event-plus-i4nte0khj-event-plus.vercel.app', description: 'Production' }, { url: 'http://localhost:3000', description: 'Local development' }],
+  servers: [{ url: 'https://30907271803796-event-plus-n1w7p903f-event-plus.vercel.app', description: 'Production' }, { url: 'http://localhost:3000', description: 'Local development' }],
   paths: {
     '/health': { get: { responses: { 200: { description: 'Service health' } } } },
     '/api/auth/register': { post: { requestBody: { required: true, content: { 'application/json': { schema: { $ref: '#/components/schemas/Register' } } } }, responses: { 201: { description: 'Registered' }, 422: { description: 'Validation error' } } } },

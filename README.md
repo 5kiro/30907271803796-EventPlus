@@ -36,6 +36,6 @@ Node.js, Express, MongoDB/Mongoose, JWT, bcryptjs, Socket.io, Swagger, Jest, and
 
 ## Deployment
 
-Live deployment URL: https://30907271803796-event-plus-i4nte0khj-event-plus.vercel.app
+Live deployment URL: https://30907271803796-event-plus-n1w7p903f-event-plus.vercel.app
 
 Deployment endpoints: `/health` and `/api-docs` are available at the live URL above.
