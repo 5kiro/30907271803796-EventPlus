@@ -8,12 +8,13 @@ Node.js, Express, MongoDB/Mongoose, JWT, bcryptjs, Socket.io, Swagger, Jest, and
 
 ## Local Setup
 
-1. Install Node.js 18 or newer and MongoDB.
-2. Run `npm install`.
-3. Copy `.env.example` to `.env` and set `MONGO_URI` and `JWT_SECRET`.
-4. Run `npm run seed`.
-5. Run `npm run dev`.
-6. Visit `/health` or `/api-docs`.
+1. Clone the repository: `git clone https://github.com/5kiro/lvl4-last-project.git`.
+2. Install Node.js 18 or newer and MongoDB, or use MongoDB Atlas.
+3. Run `npm install`.
+4. Copy `.env.example` to `.env` and set `MONGO_URI` and `JWT_SECRET`.
+5. Run `npm run seed`.
+6. Run `npm run dev`.
+7. Visit `http://localhost:3000/health` or `http://localhost:3000/api-docs`.
 
 ## Endpoints
 
@@ -33,4 +34,8 @@ Node.js, Express, MongoDB/Mongoose, JWT, bcryptjs, Socket.io, Swagger, Jest, and
 | POST | `/api/announcements` | Admin announcement broadcast |
 | GET | `/health` | Runtime and database health |
 
-Deployment URL: configure after deploying to Vercel.
+## Deployment
+
+Live deployment URL: `<add-your-deployment-url>`
+
+After deployment, verify `/health` and `/api-docs` using the live URL, then replace the placeholder above.
