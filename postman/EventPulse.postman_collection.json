@@ -1,1 +1,47 @@
-{"info":{"name":"EventPulse API","schema":"https://schema.getpostman.com/json/collection/v2.1.0/collection.json"},"variable":[{"key":"baseUrl","value":"http://localhost:3000"},{"key":"token","value":""}],"item":[{"name":"Health","request":{"method":"GET","url":"{{baseUrl}}/health"}},{"name":"Register","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\"name\":\"A User\",\"email\":\"user@example.com\",\"password\":\"secret123\"}"},"url":"{{baseUrl}}/api/auth/register"}},{"name":"Events","request":{"method":"GET","url":"{{baseUrl}}/api/events?page=1&limit=10&sortBy=date"}}]}
+{
+	"info": { "name": "EventPulse API", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json" },
+	"variable": [
+		{ "key": "baseUrl", "value": "http://localhost:3000" },
+		{ "key": "token", "value": "" },
+		{ "key": "eventId", "value": "" },
+		{ "key": "registrationId", "value": "" },
+		{ "key": "categoryId", "value": "" }
+	],
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{ "name": "Register attendee", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"name\": \"A User\",\n  \"email\": \"user@example.com\",\n  \"password\": \"secret123\"\n}" }, "url": "{{baseUrl}}/api/auth/register" } },
+				{ "name": "Login attendee", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"secret123\"\n}" }, "url": "{{baseUrl}}/api/auth/login" } },
+				{ "name": "Login seeded admin", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"email\": \"admin@eventpulse.test\",\n  \"password\": \"Admin123!\"\n}" }, "url": "{{baseUrl}}/api/auth/login" } }
+			]
+		},
+		{
+			"name": "Events",
+			"item": [
+				{ "name": "List events", "request": { "method": "GET", "url": "{{baseUrl}}/api/events?page=1&limit=10&sortBy=date&order=asc" } },
+				{ "name": "Search and filter events", "request": { "method": "GET", "url": "{{baseUrl}}/api/events?search=showcase&city=Cairo" } },
+				{ "name": "Get event", "request": { "method": "GET", "url": "{{baseUrl}}/api/events/{{eventId}}" } },
+				{ "name": "Create event (admin)", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" }], "body": { "mode": "raw", "raw": "{\n  \"title\": \"New Event\",\n  \"description\": \"A new EventPulse event\",\n  \"category\": \"{{categoryId}}\",\n  \"date\": \"2027-01-15T18:00:00.000Z\",\n  \"city\": \"Cairo\",\n  \"venue\": \"EventPulse Hall\",\n  \"capacity\": 100\n}" }, "url": "{{baseUrl}}/api/events" } },
+				{ "name": "Update event (admin)", "request": { "method": "PATCH", "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" }], "body": { "mode": "raw", "raw": "{\n  \"title\": \"Updated Event Title\"\n}" }, "url": "{{baseUrl}}/api/events/{{eventId}}" } },
+				{ "name": "Delete event (admin)", "request": { "method": "DELETE", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }], "url": "{{baseUrl}}/api/events/{{eventId}}" } }
+			]
+		},
+		{
+			"name": "Registrations",
+			"item": [
+				{ "name": "Register for event", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" }], "body": { "mode": "raw", "raw": "{\n  \"event\": \"{{eventId}}\"\n}" }, "url": "{{baseUrl}}/api/registrations" } },
+				{ "name": "My registrations", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }], "url": "{{baseUrl}}/api/registrations/my" } },
+				{ "name": "Cancel registration", "request": { "method": "DELETE", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }], "url": "{{baseUrl}}/api/registrations/{{registrationId}}" } }
+			]
+		},
+		{
+			"name": "Announcements",
+			"item": [
+				{ "name": "Announcement history", "request": { "method": "GET", "url": "{{baseUrl}}/api/announcements/{{eventId}}" } },
+				{ "name": "Send announcement (admin)", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" }], "body": { "mode": "raw", "raw": "{\n  \"eventId\": \"{{eventId}}\",\n  \"text\": \"The event begins at 6 PM.\"\n}" }, "url": "{{baseUrl}}/api/announcements" } }
+			]
+		},
+		{ "name": "Health", "request": { "method": "GET", "url": "{{baseUrl}}/health" } }
+	]
+}
