@@ -15,9 +15,23 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./utils/swagger');
 
 const app = express();
+let dbConnection;
+
+async function ensureDatabaseConnection(req, res, next) {
+  if (mongoose.connection.readyState === 1) return next();
+  try {
+    dbConnection ||= connectDB();
+    await dbConnection;
+    next();
+  } catch (error) {
+    next(error);
+  }
+}
+
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(mongoSanitize());
+if (process.env.VERCEL) app.use(ensureDatabaseConnection);
 app.get('/health', (req, res) => res.json({ status: 'ok', environment: process.env.NODE_ENV || 'development', uptime: process.uptime(), database: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected' }));
 app.use('/api/auth', authRoutes);
 app.use('/api/events', eventRoutes);
