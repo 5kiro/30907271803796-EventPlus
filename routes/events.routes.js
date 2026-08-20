@@ -1,0 +1,13 @@
+const router = require('express').Router();
+const { body, param } = require('express-validator');
+const auth = require('../middleware/requireAuth');
+const role = require('../middleware/requireRole');
+const validate = require('../middleware/validate');
+const controller = require('../controllers/events.controller');
+const eventRules = [body('title').trim().notEmpty(), body('description').trim().notEmpty(), body('category').isMongoId(), body('date').isISO8601(), body('city').trim().notEmpty(), body('venue').trim().notEmpty(), body('capacity').isInt({ min: 1 })];
+router.get('/', controller.list);
+router.get('/:id', [param('id').isMongoId(), validate], controller.getOne);
+router.post('/', auth, role('admin'), eventRules, validate, controller.create);
+router.patch('/:id', auth, role('admin'), [param('id').isMongoId(), body('title').optional().trim().notEmpty(), body('description').optional().trim().notEmpty(), body('category').optional().isMongoId(), body('date').optional().isISO8601(), body('city').optional().trim().notEmpty(), body('venue').optional().trim().notEmpty(), body('capacity').optional().isInt({ min: 1 })], validate, controller.update);
+router.delete('/:id', auth, role('admin'), [param('id').isMongoId(), validate], controller.remove);
+module.exports = router;
